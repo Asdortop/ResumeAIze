@@ -6,6 +6,10 @@ load_dotenv()
 
 # Set up Gemini API key
 api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    raise ValueError("❌ Error: GEMINI_API_KEY not found. Make sure it's set in .env (local) or GitHub Secrets (deployment).")
+
 genai.configure(api_key=api_key)
 
 def analyze_resume(resume_text, job_description):
